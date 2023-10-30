@@ -1,0 +1,39 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Movie Ticket Order page - Welcome and choose a Movie</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to our Movie Ticket Shop App</h1>
+</header>
+<main>
+    <h2>Choose movie:</h2>
+    <form th:method="POST" th:action="@{/servlet/movie}">
+        <div th:each="leon : ${movies}">
+
+            <label th:for="${leon.getTitle()}" th:text="${leon.getTitle() + ', Summary: ' + leon.getSummary() + ', Rating: ' + leon.getRating()}"></label>
+            <input type="radio" th:name="selectedMovie" th:id="${leon.getTitle()}" th:value="${leon.getTitle()}" required>
+
+        </div>
+
+        <h2>What's your name:</h2>
+        <input type="text" name="name"><br/>
+        <br/>
+
+
+
+        <h2>Choose number of tickets:</h2>
+        <input type="number" name="numTickets" min="1" max="10"><br/>
+        <br/>
+        <input type="submit" value="Submit">
+    </form>
+</main>
+</body>
+</html>
